@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './Chatbox.css'
 import ChatMessage from './ChatMessage'
 import serverData from './data'
+import { TextField } from "@material-ui/core"
+import { Button } from "@material-ui/core"
 
 
 function Chatbox() {
@@ -29,14 +31,26 @@ function Chatbox() {
     }
   }, [messageList])
   return (
-    <div>
-      <h2>Chatbox</h2>
+    <div className='Chatbox'>
       <div className="messageArea">
         { messageList.map((message, index) => <ChatMessage key={index} text={message.text} author={message.author}/>) }
       </div>
       <form onSubmit={updateMessageList}>
-        <input value={inputValue} placeholder="Type your message" onChange={inputText}></input>
-        <button>Submit</button>
+        {/* <input value={inputValue} placeholder="Type your message" onChange={inputText}></input>
+        <button>Submit</button> */}
+        <TextField
+          placeholder="Type your message"
+          onChange={inputText}
+          value={inputValue}
+          autoFocus
+        />
+        <Button 
+          variant="outlined" 
+          color="primary" 
+          onClick={updateMessageList}
+        >
+          Send
+        </Button>
       </form>
     </div>
     )
