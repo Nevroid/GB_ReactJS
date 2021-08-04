@@ -30,9 +30,8 @@ const chatReducer = (state = initialState, action) => {
     switch (action.type) {
       case CHAT_ADD_MSG:
         return {
-          // ...state,
-          ...state.chats.find(chat => chat.id === action.payload.id).messages.push({author: action.payload.author, text: action.payload.text})
-          
+          ...state,
+          ...state.chats.find(chat => chat.id === action.payload.data.id).messages.push({author: action.payload.data.author, text: action.payload.data.text})
         }
       default:
         return state

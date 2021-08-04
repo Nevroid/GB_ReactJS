@@ -11,6 +11,7 @@ import { chatAddMsg } from './store/actions/chatActions';
 
 export default function Chatbox() {
   const params = useParams()
+  
   // const [messageList, setMessageList] = useState(serverData.chats[params.chatId].messages)
   const {id, name, messages} = useSelector((state) => state.chat.chats.find(chat => chat.id === +params.chatId))
 
@@ -20,32 +21,23 @@ export default function Chatbox() {
     e.preventDefault()
     // console.log(e)
     if (inputValue !== '') {
-      dispatch(chatAddMsg({author: serverData.users.user, text: inputValue, id: +params.chatId}))
+      dispatch(chatAddMsg({id: +params.chatId, author: serverData.users.user, text: inputValue }))
       setInputValue('')
     } else {
-      dispatch(chatAddMsg({author: name, text: 'You should write something', id: id}))
+      dispatch(chatAddMsg({id: id, author: name, text: 'You should write something'}))
+      
 
     }
   }
   const [inputValue, setInputValue] = useState('')
-  // const updateMessageList = (e) => {
-  //   e.preventDefault()
-  //   // console.log(e)
-  //   if (inputValue !== '') {
-  //     setMessageList([...messageList, {author: serverData.users.user, text: inputValue}])
-  //     setInputValue('')
-  //   } else {
-  //     setMessageList([...messageList, {author: serverData.chats[params.chatId].name, text: 'You should write something'}])
-
-  //   }
-  // }
   const inputText = (e) => {
     setInputValue(e.target.value)
   }
   useEffect(() => {
     if ( messages.length &&  messages[ messages.length - 1].author !== name) {
+      console.log(messages)
       setTimeout(() =>{
-        dispatch(chatAddMsg({author: name, text: 'Your message is: ' + messages[messages.length - 1].text, id: id}))
+        dispatch(chatAddMsg({id: id, author: name, text: 'Your message is: ' + messages[messages.length - 1].text }))
       }, 1000)
     }
   }, [messages, params.chatId, id, name, dispatch])
