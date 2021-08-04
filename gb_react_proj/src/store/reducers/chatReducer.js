@@ -1,4 +1,4 @@
-import {CHAT_ADD_MSG} from '../actions/chatActions'
+import {CHAT_ADD_MSG, CHAT_DELETE_CHAT} from '../actions/chatActions'
 
 const initialState = {
     users: {
@@ -33,6 +33,14 @@ const chatReducer = (state = initialState, action) => {
           ...state,
           ...state.chats.find(chat => chat.id === action.payload.data.id).messages.push({author: action.payload.data.author, text: action.payload.data.text})
         }
+        case CHAT_DELETE_CHAT:
+          console.log(action.payload.data)
+          const index = state.chats.indexOf(state.chats.find(chat => chat.id === action.payload.data))
+          console.log(index)
+          const deleted = state.chats.splice(index, 1)
+          return {
+          ...state
+          }
       default:
         return state
     }
