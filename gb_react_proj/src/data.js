@@ -1,5 +1,5 @@
 
-const serverData = {
+export const serverData = {
     users: {
       user: 'User',
       bot001: 'Bot-1',
@@ -24,4 +24,12 @@ const serverData = {
       }
     ]
 }
+
+export const API_URL = 'https://reqres.in/api/users?page=2'
+export const USERLIST_REQUEST_STATUS = {
+  ERROR: 'error',
+  LOADING: 'loading',
+  IDLE: 'idle'
+}
+
 export default serverData; 
