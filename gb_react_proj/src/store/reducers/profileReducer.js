@@ -1,5 +1,5 @@
 import { PROFILE_SET_DATA } from '../actions/profileSetData'
-import { PROFILE_SHOW_NAME } from '../actions//profileShowName'
+import { PROFILE_SHOW_NAME } from '../actions/profileShowName'
 
 const initialState = {
   showName: true,

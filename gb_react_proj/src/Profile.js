@@ -13,7 +13,7 @@ function Profile () {
     setUserData(e.target.value)
   }
 
-  const {name, age, showName} = useSelector((state) => state)
+  const {name, age, showName} = useSelector((state) => state.profile)
 
   const dispatch = useDispatch()
   const setShowName = () => {
