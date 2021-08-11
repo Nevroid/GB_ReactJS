@@ -37,7 +37,6 @@ const chatReducer = (state = initialState, action) => {
           console.log(action.payload.data)
           const index = state.chats.indexOf(state.chats.find(chat => chat.id === action.payload.data))
           console.log(index)
-          const deleted = state.chats.splice(index, 1)
           return {
           ...state
           }

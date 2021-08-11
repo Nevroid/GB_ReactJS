@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { Link } from 'react-router-dom'
-import serverData from './data'
+
 import './ChatList.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@material-ui/core';

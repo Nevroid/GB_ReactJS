@@ -2,6 +2,7 @@ import Chatbox from './Chatbox'
 import ChatList from './ChatList'
 import Profile from './Profile'
 import Home from './Home'
+import UserList from './UserList'
 import TestChat from './TestChat'
 import React from 'react'
 import { Switch, Route } from 'react-router'
@@ -15,7 +16,9 @@ function Router () {
         <Link to="/chats/">Chats</Link>
         <Link to="/profile">Profile</Link>
         <br></br>
-        <Link to="/test">Test</Link>
+        <Link to="/users">Friends</Link>
+        <br></br>
+        <Link to="/test/1">Test</Link>
       </div>
 
       <Switch>
@@ -31,6 +34,9 @@ function Router () {
             </div>} />
           <Route path="/profile">
               <Profile />
+          </Route>
+          <Route path="/users">
+              <UserList />
           </Route>
           <Route path="/test/:testChatId">
             <TestChat />
