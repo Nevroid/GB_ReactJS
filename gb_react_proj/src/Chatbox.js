@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Chatbox.css'
 import ChatMessage from './ChatMessage'
 import serverData from './data'
+import firebase from 'firebase';
 import { TextField } from "@material-ui/core"
 import { Button } from "@material-ui/core"
 import { useParams } from 'react-router'
@@ -12,6 +13,7 @@ import { chatAddMsg } from './store/actions/chatActions';
 export default function Chatbox() {
   const params = useParams()
   
+  
   // const [messageList, setMessageList] = useState(serverData.chats[params.chatId].messages)
   const {id, name, messages} = useSelector((state) => state.chat.chats.find(chat => chat.id === +params.chatId))
 
@@ -19,6 +21,7 @@ export default function Chatbox() {
 
   const updateMessageList = (e) => {
     e.preventDefault()
+    firebase.database().ref('chats').child(+params.chatId).push({author: serverData.users.user, text: inputValue})
     // console.log(e)
     if (inputValue !== '') {
       dispatch(chatAddMsg({id: +params.chatId, author: serverData.users.user, text: inputValue }))
@@ -34,6 +37,13 @@ export default function Chatbox() {
     setInputValue(e.target.value)
   }
   useEffect(() => {
+    // firebase.database().ref('chats').child(+params.chatId)
+    // .get()
+    // .then((snapshot) => {
+    //   snapshot.forEach((item) => {
+    //     dispatch(chatAddMsg({id: +params.chatId, author: item.val.author, text: item.val.text}))
+    //   })
+    // })
     if ( messages.length &&  messages[ messages.length - 1].author !== name) {
       console.log(messages)
       setTimeout(() =>{

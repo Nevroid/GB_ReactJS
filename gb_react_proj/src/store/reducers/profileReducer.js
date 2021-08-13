@@ -1,10 +1,11 @@
-import { PROFILE_SET_DATA } from '../actions/profileSetData'
+import { PROFILE_SET_DATA, PROFILE_SET_ISAUTHED } from '../actions/profileSetData'
 import { PROFILE_SHOW_NAME } from '../actions/profileShowName'
 
 const initialState = {
   showName: true,
   name: 'John Doe',
-  age: 100
+  age: 100,
+  isAuthed: false
 }
 
 
@@ -20,6 +21,11 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         name: action.payload.name,
         age: action.payload.age      
+      }
+    case PROFILE_SET_ISAUTHED:
+      return {
+        ...state,
+        isAuthed: action.payload.isAuthed
       }
     default:
       return state
