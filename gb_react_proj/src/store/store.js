@@ -5,12 +5,12 @@ import profileReducer from './reducers/profileReducer'
 import chatReducer from './reducers/chatReducer'
 import usersReducer from './reducers/usersReducer'
 
-const composedEnhancer = compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const composedEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const rootReducer = combineReducers({
   profile: profileReducer,
   chat: chatReducer,
   users: usersReducer
 })
 
-export const store = createStore(rootReducer, composedEnhancer)
+export const store = createStore(composedEnhancers(applyMiddleware(thunk)))
 
